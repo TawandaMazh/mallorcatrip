@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Murdaside Mallorca Memoirs · Palma Nova · June 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #060A10;
+      --surface:       #0D1520;
+      --surface-2:     #111E30;
+      --border:        #1A2A3F;
+      --border-subtle: #0F1D2E;
+
+      --gold:          #D4A843;
+      --gold-dim:      rgba(212,168,67,.55);
+      --gold-bg:       rgba(212,168,67,.08);
+      --gold-bg-deep:  rgba(212,168,67,.14);
+
+      --blue:          #2A7FD4;
+      --blue-lt:       #5BA3E0;
+      --blue-bg:       rgba(42,127,212,.10);
+
+      --party:         #9333EA;
+      --party-bg:      rgba(147,51,234,.10);
+      --party-b:       rgba(147,51,234,.32);
+
+      --food-c:        #3B82F6;
+      --food-bg:       rgba(59,130,246,.10);
+      --food-b:        rgba(59,130,246,.32);
+
+      --sight:         #14B8A6;
+      --sight-bg:      rgba(20,184,166,.10);
+      --sight-b:       rgba(20,184,166,.32);
+
+      --activity:      #22C55E;
+      --activity-bg:   rgba(34,197,94,.10);
+      --activity-b:    rgba(34,197,94,.32);
+
+      --afro:          #D4A843;
+      --afro-bg:       rgba(212,168,67,.10);
+      --afro-b:        rgba(212,168,67,.35);
+
+      --danger:        #EF4444;
+      --danger-bg:     rgba(239,68,68,.10);
+      --danger-b:      rgba(239,68,68,.32);
+
+      --text:          #E2EAF4;
+      --text-muted:    #7A91B0;
+      --text-dim:      #3E546E;
+
+      --ease-out:     cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out:  cubic-bezier(0.77, 0, 0.175, 1);
+
+      --ticker-h: 36px;
+      --nav-h:    62px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: calc(var(--ticker-h) + var(--nav-h));
+    }
+
+    /* ──────────────────────────────────────────
+       TICKER
+    ────────────────────────────────────────── */
+    .ticker {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--ticker-h);
+      background: var(--gold);
+      overflow: hidden;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: ticker-scroll 38s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-track:hover { animation-play-state: paused; }
+
+    .ticker-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #060A10;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+
+    .ticker-dot {
+      width: 3px; height: 3px;
+      background: rgba(6,10,16,.35);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ──────────────────────────────────────────
+       STICKY NAV
+    ────────────────────────────────────────── */
+    .day-nav {
+      position: fixed;
+      top: var(--ticker-h);
+      left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(6,10,16,.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      z-index: 190;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 20px;
+    }
+
+    .day-tab {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px;
+      letter-spacing: .07em;
+      color: var(--text-muted);
+      padding: 8px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      transition:
+        color 200ms var(--ease-out),
+        background 200ms var(--ease-out),
+        border-color 200ms var(--ease-out);
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .day-tab .tab-sub {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .65;
+      margin-top: 2px;
+    }
+
+    .day-tab:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+
+    .day-tab:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .day-tab.active {
+      color: var(--gold);
+      background: var(--gold-bg);
+      border-color: var(--gold-dim);
+    }
+
+    /* ──────────────────────────────────────────
+       HERO
+    ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: 40px;
+      padding: 60px 60px 56px;
+      overflow: hidden;
+    }
+
+    #heroBg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0D2A48 0%, #060A10 100%);
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.06) translateY(0);
+      will-change: transform;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(6,10,16,.97) 0%,
+        rgba(6,10,16,.72) 38%,
+        rgba(6,10,16,.38) 65%,
+        rgba(6,10,16,.18) 100%
+      );
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(58px, 9.5vw, 116px);
+      line-height: .9;
+      letter-spacing: .025em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: .09em;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .crew-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .crew-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      background: var(--gold-bg);
+      padding: 5px 14px;
+      border-radius: 4px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(13,21,32,.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .hero-stat {
+      flex: 1;
+      min-width: 110px;
+      padding: 14px 20px;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 3px;
+    }
+
+    .hero-stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: .04em;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* Crew photo widget */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+    }
+
+    .crew-frame {
+      position: relative;
+      width: 220px;
+    }
+
+    #crewImg {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+      background: var(--surface);
+    }
+
+    .crew-tag {
+      position: absolute;
+      bottom: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #060A10;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: .14em;
+      padding: 4px 18px;
+      border-radius: 2px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ──────────────────────────────────────────
+       MAIN CONTAINER
+    ────────────────────────────────────────── */
+    .main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+
+    /* ──────────────────────────────────────────
+       DAY PANELS
+    ────────────────────────────────────────── */
+    .day-panel {
+      display: none;
+    }
+
+    .day-panel.active {
+      display: block;
+      animation: panel-in 380ms var(--ease-out) both;
+    }
+
+    @keyframes panel-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .day-header { margin-bottom: 36px; }
+
+    .day-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .day-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      letter-spacing: .04em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .day-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+
+    /* ──────────────────────────────────────────
+       TIMELINE + EVENT CARDS
+    ────────────────────────────────────────── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+
+    .event-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 380ms var(--ease-out),
+        transform 380ms var(--ease-out),
+        border-color 180ms ease;
+    }
+
+    .event-card.visible { opacity: 1; transform: translateY(0); }
+
+    .event-card--party   { background: var(--party-bg);   border-color: var(--party-b); }
+    .event-card--party:hover   { border-color: var(--party);   }
+    .event-card--food    { background: var(--food-bg);    border-color: var(--food-b);  }
+    .event-card--food:hover    { border-color: var(--food-c);  }
+    .event-card--sight   { background: var(--sight-bg);   border-color: var(--sight-b); }
+    .event-card--sight:hover   { border-color: var(--sight);   }
+    .event-card--activity { background: var(--activity-bg); border-color: var(--activity-b); }
+    .event-card--activity:hover { border-color: var(--activity); }
+    .event-card--afro    { background: var(--afro-bg);    border-color: var(--afro-b);  }
+    .event-card--afro:hover    { border-color: var(--afro);    }
+
+    .ev-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .ev-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    .ev-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .ev-tag--party    { background: var(--party-bg);    color: var(--party);    border: 1px solid var(--party-b); }
+    .ev-tag--food     { background: var(--food-bg);     color: var(--food-c);   border: 1px solid var(--food-b); }
+    .ev-tag--sight    { background: var(--sight-bg);    color: var(--sight);    border: 1px solid var(--sight-b); }
+    .ev-tag--activity { background: var(--activity-bg); color: var(--activity); border: 1px solid var(--activity-b); }
+    .ev-tag--afro     { background: var(--afro-bg);     color: var(--afro);     border: 1px solid var(--afro-b); }
+
+    .ev-time {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: .05em;
+      flex-shrink: 0;
+    }
+
+    .ev-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 23px;
+      letter-spacing: .04em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .ev-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .ev-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .ev-cost {
+      font-family: 'Space Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .ev-cost-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-weight: 400;
+      letter-spacing: .07em;
+    }
+
+    .ev-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .05em;
+      color: var(--text-dim);
+    }
+
+    /* ──────────────────────────────────────────
+       WARNING BOX
+    ────────────────────────────────────────── */
+    .warning-box {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-b);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .warning-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px;
+      letter-spacing: .06em;
+      color: var(--danger);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .warning-box strong { color: var(--danger); }
+
+    /* Monday-only banner */
+    .only-banner {
+      border: 1px solid var(--gold-dim);
+      background: var(--gold-bg);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-bottom: 28px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ──────────────────────────────────────────
+       SPEND TABLES
+    ────────────────────────────────────────── */
+    .spend-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+
+    .spend-hd {
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+    }
+
+    .spend-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .spend-table tr { border-bottom: 1px solid var(--border-subtle); }
+    .spend-table tr:last-child { border-bottom: none; }
+
+    .spend-table td {
+      padding: 11px 22px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .spend-table td:last-child { text-align: right; color: var(--text); }
+
+    .spend-included td:last-child { color: var(--activity); }
+
+    .spend-total { background: var(--gold-bg); border-top: 1px solid var(--gold-dim) !important; }
+    .spend-total td { color: var(--gold); font-weight: 700; padding: 14px 22px; }
+
+    .spend-note {
+      padding: 10px 22px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .05em;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* ──────────────────────────────────────────
+       SECTION CHROME
+    ────────────────────────────────────────── */
+    .section { padding: 72px 0; }
+
+    .sec-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      letter-spacing: .04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 40px;
+    }
+
+    /* ──────────────────────────────────────────
+       FOOD GUIDE
+    ────────────────────────────────────────── */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 14px;
+    }
+
+    .food-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 380ms var(--ease-out),
+        transform 380ms var(--ease-out),
+        border-color 180ms ease;
+      cursor: default;
+    }
+
+    .food-card.visible { opacity: 1; transform: translateY(0); }
+    .food-card:hover { border-color: rgba(255,255,255,.11); }
+
+    .food-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 21px;
+      letter-spacing: .04em;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .food-stars {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+    }
+
+    .food-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .food-price {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .food-badge {
+      display: inline-block;
+      margin-top: 9px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      background: var(--blue-bg);
+      color: var(--blue-lt);
+      border: 1px solid rgba(91,163,224,.25);
+    }
+
+    .food-badge--splurge {
+      background: var(--gold-bg);
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    .food-badge--tip {
+      background: var(--activity-bg);
+      color: var(--activity);
+      border-color: var(--activity-b);
+    }
+
+    /* ──────────────────────────────────────────
+       BUDGET SECTION
+    ────────────────────────────────────────── */
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .budget-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 380ms var(--ease-out), transform 380ms var(--ease-out);
+    }
+
+    .budget-card.visible { opacity: 1; transform: translateY(0); }
+
+    .budget-lbl {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .budget-amt {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: .04em;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .budget-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .budget-total-row {
+      background: var(--gold-bg-deep);
+      border: 1px solid var(--gold-dim);
+      border-radius: 8px;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .budget-total-lbl {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .budget-total-amt {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 58px;
+      letter-spacing: .04em;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .budget-caveat {
+      max-width: 340px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .budget-incl-note {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: var(--activity-bg);
+      border: 1px solid var(--activity-b);
+      border-radius: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .04em;
+      color: var(--activity);
+    }
+
+    /* ──────────────────────────────────────────
+       DOS AND DON'TS
+    ────────────────────────────────────────── */
+    .dd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .dd-col {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .dd-col-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: .06em;
+      margin-bottom: 18px;
+    }
+
+    .dd-col--dos .dd-col-title  { color: var(--activity); }
+    .dd-col--dont .dd-col-title { color: var(--danger); }
+
+    .dd-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+
+    .dd-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 340ms var(--ease-out), transform 340ms var(--ease-out);
+    }
+
+    .dd-item.visible { opacity: 1; transform: translateX(0); }
+
+    .dd-dot {
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      margin-top: 7px;
+    }
+
+    .dd-col--dos .dd-dot  { background: var(--activity); }
+    .dd-col--dont .dd-dot { background: var(--danger); }
+
+    /* ──────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+
+    /* ──────────────────────────────────────────
+       SCROLLBAR
+    ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+    /* ──────────────────────────────────────────
+       RESPONSIVE
+    ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 44px 28px 48px;
+      }
+      .hero-right { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { padding: 36px 20px 44px; }
+      .hero-title { font-size: clamp(50px, 13vw, 80px); }
+      .hero-stats { flex-wrap: wrap; }
+      .hero-stat { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .main { padding: 48px 16px 32px; }
+      .day-nav { gap: 0; padding: 0 6px; }
+      .day-tab { font-size: 14px; padding: 7px 14px; }
+      .day-tab .tab-sub { display: none; }
+      .dd-grid { grid-template-columns: 1fr; }
+      .food-grid { grid-template-columns: 1fr; }
+      .budget-grid { grid-template-columns: 1fr 1fr; }
+      .sec-title { font-size: 40px; }
+    }
+
+    @media (max-width: 440px) {
+      .budget-grid { grid-template-columns: 1fr; }
+      .budget-total-row { flex-direction: column; }
+    }
+
+    /* ──────────────────────────────────────────
+       REDUCED MOTION
+    ────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+      .event-card, .food-card, .budget-card, .dd-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      @keyframes panel-in {
+        from { opacity: 1; transform: none; }
+        to   { opacity: 1; transform: none; }
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       TICKER
+  ═══════════════════════════════════════ -->
+  <div class="ticker" role="marquee" aria-label="Trip highlights ticker">
+    <div class="ticker-track">
+      <!-- Content (duplicated for seamless loop) -->
+      <div class="ticker-item">
+        Murdaside Mallorca Memoirs
+        <span class="ticker-dot"></span>
+        19–22 June 2026
+        <span class="ticker-dot"></span>
+        Globales Panama · Palma Nova
+        <span class="ticker-dot"></span>
+        €200 Per Day Spending Money
+        <span class="ticker-dot"></span>
+        Times Square Music Club · Friday Night
+        <span class="ticker-dot"></span>
+        Pure Night Club · Saturday Night
+        <span class="ticker-dot"></span>
+        Oceans Beach Club · Sunday Night
+        <span class="ticker-dot"></span>
+        Situ · Koza · MC · TT
+        <span class="ticker-dot"></span>
+        Hotel Breakfast and Dinner Included
+        <span class="ticker-dot"></span>
+        Afrobeats and Amapiano Every Night
+        <span class="ticker-dot"></span>
+      </div>
+      <div class="ticker-item" aria-hidden="true">
+        Murdaside Mallorca Memoirs
+        <span class="ticker-dot"></span>
+        19–22 June 2026
+        <span class="ticker-dot"></span>
+        Globales Panama · Palma Nova
+        <span class="ticker-dot"></span>
+        €200 Per Day Spending Money
+        <span class="ticker-dot"></span>
+        Times Square Music Club · Friday Night
+        <span class="ticker-dot"></span>
+        Pure Night Club · Saturday Night
+        <span class="ticker-dot"></span>
+        Oceans Beach Club · Sunday Night
+        <span class="ticker-dot"></span>
+        Situ · Koza · MC · TT
+        <span class="ticker-dot"></span>
+        Hotel Breakfast and Dinner Included
+        <span class="ticker-dot"></span>
+        Afrobeats and Amapiano Every Night
+        <span class="ticker-dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       STICKY DAY NAV
+  ═══════════════════════════════════════ -->
+  <nav class="day-nav" role="tablist" aria-label="Trip days">
+    <button class="day-tab active" data-day="fri" role="tab" aria-selected="true" aria-controls="panel-fri">
+      FRI 19
+      <span class="tab-sub">Arrival</span>
+    </button>
+    <button class="day-tab" data-day="sat" role="tab" aria-selected="false" aria-controls="panel-sat">
+      SAT 20
+      <span class="tab-sub">Full Day</span>
+    </button>
+    <button class="day-tab" data-day="sun" role="tab" aria-selected="false" aria-controls="panel-sun">
+      SUN 21
+      <span class="tab-sub">Last Night</span>
+    </button>
+    <button class="day-tab" data-day="mon" role="tab" aria-selected="false" aria-controls="panel-mon">
+      MON 22
+      <span class="tab-sub">Situ + Koza</span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div id="heroBg" role="img" aria-label="The Yos — Situ, Koza, MC, TT"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-left">
+      <p class="hero-eyebrow">The Yos — Group Trip 2026</p>
+      <h1 class="hero-title" id="hero-title">
+        Murdaside<br>
+        <em>Mallorca</em><br>
+        Memoirs
+      </h1>
+      <p class="hero-sub">Palma Nova, Mallorca &nbsp;·&nbsp; 19–22 June 2026 &nbsp;·&nbsp; Globales Panama</p>
+
+      <div class="crew-badges" role="list" aria-label="Crew members">
+        <span class="crew-badge" role="listitem">Situ</span>
+        <span class="crew-badge" role="listitem">Koza</span>
+        <span class="crew-badge" role="listitem">MC</span>
+        <span class="crew-badge" role="listitem">TT</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Duration</div>
+          <div class="hero-stat-val">4 Days</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Daily Budget</div>
+          <div class="hero-stat-val">€200 pp</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Nights Out</div>
+          <div class="hero-stat-val">3 Nights</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Meals</div>
+          <div class="hero-stat-val">B+D Incl.</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Crew</div>
+          <div class="hero-stat-val">4 Yos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="crew-frame">
+        <img id="crewImg" src="" alt="The Yos — Situ, Koza, MC, TT">
+        <div class="crew-tag" aria-hidden="true">The Yos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       MAIN
+  ═══════════════════════════════════════ -->
+  <main class="main" id="main-content">
+
+    <!-- ─── FRIDAY ─── -->
+    <div id="panel-fri" class="day-panel active" role="tabpanel" aria-labelledby="tab-fri">
+      <div class="day-header">
+        <div class="day-label">Day 01 · Friday 19 June 2026</div>
+        <h2 class="day-title">Arrival Day</h2>
+        <p class="day-desc">Touch down, settle in, hit the strip · All 4: Situ, Koza, MC, TT</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">Arrival</span></div>
+            <span class="ev-time">Afternoon</span>
+          </div>
+          <h3 class="ev-title">Land at PMI — Uber to Globales Panama</h3>
+          <p class="ev-detail">Palma de Mallorca Airport straight to Palma Nova. Check in, drop bags, get the rooms sorted before anything else.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€6 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Uber split 4 · ~€24 total</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--activity">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--activity">Beach</span></div>
+            <span class="ev-time">15:00 – 18:00</span>
+          </div>
+          <h3 class="ev-title">Palma Nova Beach</h3>
+          <p class="ev-detail">20-minute walk from the hotel. Clear shallow water, calm energy. Get your bearings and ease into the trip before the night.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Free · Drinks from Mercadona</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">Explore</span></div>
+            <span class="ev-time">18:00 – 20:00</span>
+          </div>
+          <h3 class="ev-title">Explore Magaluf</h3>
+          <p class="ev-detail">Walk Punta Ballena and the main strip. Understand the layout before dark. Don't take deals from street touts — just clock the venues.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€5 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Snacks and cold drinks</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Dinner</span></div>
+            <span class="ev-time">20:00 – 21:30</span>
+          </div>
+          <h3 class="ev-title">Madame Cabra Pizzeria</h3>
+          <p class="ev-detail">4.9-star pizza near Palma Nova. Proper food, great portions. Book ahead or arrive early. If skipping, use hotel dinner which is included.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€25 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Only if skipping hotel dinner</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--party">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--party">Pre-Drinks</span></div>
+            <span class="ev-time">22:00 – 23:30</span>
+          </div>
+          <h3 class="ev-title">Stereo Mallorca</h3>
+          <p class="ev-detail">Warm up bar in Magaluf. Decent music and affordable drinks. Stick to 3 drinks max here and keep it moving — long night ahead.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€20 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">3 drinks max · Keep the pace</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--afro">
+          <div class="ev-top">
+            <div class="ev-tags">
+              <span class="ev-tag ev-tag--afro">Main Night</span>
+              <span class="ev-tag ev-tag--afro">Afro Night</span>
+            </div>
+            <span class="ev-time">00:00 – 06:00</span>
+          </div>
+          <h3 class="ev-title">Times Square Music Club</h3>
+          <p class="ev-detail">Afrobeats and Amapiano specialists on Paseo Maritimo, Palma. DM them on Instagram before the trip to confirm the afro night is running. Uber from Magaluf approximately €10 split 4.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€58 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Entry + drinks + Uber ~€3pp</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="spend-wrap">
+        <div class="spend-hd">Friday Spend Summary</div>
+        <table class="spend-table" aria-label="Friday spend breakdown">
+          <tbody>
+            <tr class="spend-included">
+              <td>Hotel Breakfast</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Airport Uber to Palma Nova (split 4)</td>
+              <td>€6</td>
+            </tr>
+            <tr>
+              <td>Palma Nova beach afternoon</td>
+              <td>€0</td>
+            </tr>
+            <tr>
+              <td>Magaluf explore + snacks</td>
+              <td>€5</td>
+            </tr>
+            <tr>
+              <td>Dinner — Madame Cabra Pizzeria</td>
+              <td>€25</td>
+            </tr>
+            <tr>
+              <td>Pre-drinks — Stereo Mallorca</td>
+              <td>€20</td>
+            </tr>
+            <tr>
+              <td>Times Square Music Club + Uber</td>
+              <td>€58</td>
+            </tr>
+            <tr>
+              <td>Misc — water, extras</td>
+              <td>€25</td>
+            </tr>
+            <tr class="spend-total">
+              <td>Daily Total</td>
+              <td>~€139 pp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── SATURDAY ─── -->
+    <div id="panel-sat" class="day-panel" role="tabpanel" aria-labelledby="tab-sat">
+      <div class="day-header">
+        <div class="day-label">Day 02 · Saturday 20 June 2026</div>
+        <h2 class="day-title">Full Send</h2>
+        <p class="day-desc">Pick your daytime move, then Pure Night Club · All 4: Situ, Koza, MC, TT</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Breakfast</span></div>
+            <span class="ev-time">08:00 – 10:00</span>
+          </div>
+          <h3 class="ev-title">Hotel Breakfast — Globales Panama</h3>
+          <p class="ev-detail">Buffet breakfast included with the stay. Eat properly. You will need the energy for a 6am finish tonight.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Included</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">Option A</span></div>
+            <span class="ev-time">10:00 – 15:00</span>
+          </div>
+          <h3 class="ev-title">Palma City Sightseeing</h3>
+          <p class="ev-detail">Castillo de Bellver (€4pp) and La Seu Cathedral (€10pp). Uber from Palma Nova approximately 30 minutes. Old Town tapas for lunch after — proper local food.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€14 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Entry fees only · Lunch extra</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--activity">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--activity">Option B</span></div>
+            <span class="ev-time">10:00 – 14:00</span>
+          </div>
+          <h3 class="ev-title">Jet Ski / Watersports — Palma Nova</h3>
+          <p class="ev-detail">Jet ski hire on the beach. Pre-book to lock in your slot. UM Beach House or local hire operators on the beachfront.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€40–60 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Pre-book recommended</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Lunch</span></div>
+            <span class="ev-time">14:00 – 15:30</span>
+          </div>
+          <h3 class="ev-title">Food Junction — Magaluf</h3>
+          <p class="ev-detail">5-star rated. Best value on the entire strip. Go here for Saturday lunch without question.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€10 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">5 stars · Best value on strip</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--activity">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--activity">Beach</span></div>
+            <span class="ev-time">16:00 – 19:00</span>
+          </div>
+          <h3 class="ev-title">Son Maties / Palma Nova Beach</h3>
+          <p class="ev-detail">Free afternoon on the beach. Grab cold drinks from Mercadona first. Recharge before what will be the longest night.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€5 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Mercadona supplies</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Dinner</span></div>
+            <span class="ev-time">19:30 – 21:00</span>
+          </div>
+          <h3 class="ev-title">Hotel Dinner — Globales Panama</h3>
+          <p class="ev-detail">Dinner is included. Use it every night. Saves €25+ and puts food in before a 6am club finish. Never skip this.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Included · Do not skip</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--party">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--party">Pre-Drinks</span></div>
+            <span class="ev-time">22:00 – 23:15</span>
+          </div>
+          <h3 class="ev-title">Stereo Mallorca or JD Terrace Silent Disco</h3>
+          <p class="ev-detail">JD Terrace if the silent disco is running — better atmosphere, lower cost than clubs. Keep it at 3 drinks. Pure runs until 6am.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€20 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">3 drinks · Pace for a 6am night</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--afro">
+          <div class="ev-top">
+            <div class="ev-tags">
+              <span class="ev-tag ev-tag--afro">Main Night</span>
+              <span class="ev-tag ev-tag--afro">Afro Night</span>
+            </div>
+            <span class="ev-time">23:30 – 06:00</span>
+          </div>
+          <h3 class="ev-title">Pure Night Club — Cala Major</h3>
+          <p class="ev-detail">Afrobeats and Amapiano specialist club, Cala Major. Doors 11:30pm, runs until 6am. DM on Instagram before Saturday to confirm the afro night. Uber from Palma Nova approximately €14 split 4.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€74 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Entry + drinks + Uber ~€4pp</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="spend-wrap">
+        <div class="spend-hd">Saturday Spend Summary</div>
+        <table class="spend-table" aria-label="Saturday spend breakdown">
+          <tbody>
+            <tr class="spend-included">
+              <td>Hotel Breakfast</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Sightseeing — Bellver + La Seu (Option A)</td>
+              <td>€14</td>
+            </tr>
+            <tr>
+              <td>Lunch — Food Junction Magaluf</td>
+              <td>€10</td>
+            </tr>
+            <tr>
+              <td>Beach afternoon + Mercadona drinks</td>
+              <td>€5</td>
+            </tr>
+            <tr class="spend-included">
+              <td>Hotel Dinner</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Pre-drinks — Stereo / JD Terrace</td>
+              <td>€20</td>
+            </tr>
+            <tr>
+              <td>Pure Night Club + Uber (split 4)</td>
+              <td>€74</td>
+            </tr>
+            <tr>
+              <td>Misc — water, extras</td>
+              <td>€5</td>
+            </tr>
+            <tr class="spend-total">
+              <td>Daily Total</td>
+              <td>~€128 pp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── SUNDAY ─── -->
+    <div id="panel-sun" class="day-panel" role="tabpanel" aria-labelledby="tab-sun">
+      <div class="day-header">
+        <div class="day-label">Day 03 · Sunday 21 June 2026</div>
+        <h2 class="day-title">Last Night</h2>
+        <p class="day-desc">Final group night together · MC + TT fly home tonight</p>
+      </div>
+
+      <div class="warning-box" role="alert">
+        <div class="warning-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Flight Alert — MC + TT
+        </div>
+        <p><strong>MC and TT fly home Sunday night.</strong> Leave Oceans at least 2.5 hours before your flight. Uber to Palma Airport is approximately €10pp split 2 (~€20 total). Pre-book the Uber before you leave the hotel Sunday evening — not from inside the club at 2am. Situ and Koza stay until Monday.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Breakfast</span></div>
+            <span class="ev-time">09:00 – 10:30</span>
+          </div>
+          <h3 class="ev-title">Hotel Breakfast — Last Group Morning</h3>
+          <p class="ev-detail">Last breakfast with all four. Globales Panama buffet, included. Take your time.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Included</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">Option A</span></div>
+            <span class="ev-time">11:00 – 15:00</span>
+          </div>
+          <h3 class="ev-title">Palma City (if skipped Saturday)</h3>
+          <p class="ev-detail">Castillo de Bellver and La Seu Cathedral. Old Town tapas lunch. Uber approximately €7pp split 4.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€21 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Entry + Uber + lunch</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--activity">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--activity">Option B</span></div>
+            <span class="ev-time">11:00 – 15:00</span>
+          </div>
+          <h3 class="ev-title">Chill Beach Day — Palma Nova</h3>
+          <p class="ev-detail">Last hours on the beach. Mercadona run first. Slow morning, good music. Save energy for tonight.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€8 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Beach drinks and snacks</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Dinner</span></div>
+            <span class="ev-time">18:00 – 20:00</span>
+          </div>
+          <h3 class="ev-title">Final Group Dinner</h3>
+          <p class="ev-detail">Hotel dinner (included and the smart move), Madame Cabra if you skipped Friday, or UM Beach House Portals for a proper send-off splurge. Book this Saturday — do not leave it to Sunday morning.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 – 40 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Hotel free · UM Beach House = splurge</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--party">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--party">Pre-Drinks</span></div>
+            <span class="ev-time">21:00 – 22:30</span>
+          </div>
+          <h3 class="ev-title">JD Terrace Silent Disco</h3>
+          <p class="ev-detail">Lower cost, good atmosphere. Warm up before the main. Keeps the daily total down with the flight Uber still to come for MC and TT.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€15 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">2–3 drinks</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--afro">
+          <div class="ev-top">
+            <div class="ev-tags">
+              <span class="ev-tag ev-tag--afro">Main Night</span>
+            </div>
+            <span class="ev-time">23:00 – late</span>
+          </div>
+          <h3 class="ev-title">Oceans Beach Club — Urban Jungle Party</h3>
+          <p class="ev-detail">Hip-hop and Afrobeats. Great send-off night for the full group. MC and TT: keep one eye on the time from 1am onwards. Pre-book the airport Uber before leaving the hotel.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€51 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Entry + drinks</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">MC + TT Only</span></div>
+            <span class="ev-time">Late — Timed to Flight</span>
+          </div>
+          <h3 class="ev-title">Uber to Palma Airport — MC + TT</h3>
+          <p class="ev-detail">Leave Oceans 2.5 hours before the flight. No exceptions. Situ and Koza stay and continue the night. Pre-booking this Uber before the night is non-negotiable.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€10 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Split 2 · ~€20 total</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="spend-wrap">
+        <div class="spend-hd">Sunday Spend Summary</div>
+        <table class="spend-table" aria-label="Sunday spend breakdown">
+          <tbody>
+            <tr class="spend-included">
+              <td>Hotel Breakfast</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Daytime activity (beach / Palma city)</td>
+              <td>€8 – 21</td>
+            </tr>
+            <tr class="spend-included">
+              <td>Hotel Dinner (or €0 – 40 if eating out)</td>
+              <td>€0 – 40</td>
+            </tr>
+            <tr>
+              <td>Pre-drinks — JD Terrace Silent Disco</td>
+              <td>€15</td>
+            </tr>
+            <tr>
+              <td>Oceans Beach Club + drinks</td>
+              <td>€51</td>
+            </tr>
+            <tr>
+              <td>MC + TT: Airport Uber (split 2)</td>
+              <td>€10 *</td>
+            </tr>
+            <tr>
+              <td>Misc — water, extras</td>
+              <td>€10</td>
+            </tr>
+            <tr class="spend-total">
+              <td>Daily Total</td>
+              <td>~€114 pp</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="spend-note">* Airport Uber applies to MC + TT only. Situ and Koza continue the night.</div>
+      </div>
+    </div>
+
+    <!-- ─── MONDAY ─── -->
+    <div id="panel-mon" class="day-panel" role="tabpanel" aria-labelledby="tab-mon">
+      <div class="only-banner" role="note">
+        Situ + Koza Only — MC and TT flew home last night
+      </div>
+      <div class="day-header">
+        <div class="day-label">Day 04 · Monday 22 June 2026</div>
+        <h2 class="day-title">Final Morning</h2>
+        <p class="day-desc">Last beach session, then airport · Situ + Koza only</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Breakfast</span></div>
+            <span class="ev-time">08:00 – 09:30</span>
+          </div>
+          <h3 class="ev-title">Final Hotel Breakfast</h3>
+          <p class="ev-detail">Last Globales Panama buffet. Check out after — sort bags and store them at reception if needed.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€0 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Included</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--activity">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--activity">Beach</span></div>
+            <span class="ev-time">10:00 – 13:00</span>
+          </div>
+          <h3 class="ev-title">Final Beach Session — Palma Nova</h3>
+          <p class="ev-detail">One last sit on the beach. Don't stay too long — factor in bag collection and airport lead time.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€8 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Drinks and final snacks</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--food">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--food">Lunch</span></div>
+            <span class="ev-time">13:00 – 14:30</span>
+          </div>
+          <h3 class="ev-title">Final Lunch</h3>
+          <p class="ev-detail">L.A. American Diner (4.7 stars) or one last stop at Food Junction. Last proper sit-down on the island.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€15 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Last meal in Mallorca</span>
+          </div>
+        </div>
+
+        <div class="event-card event-card--sight">
+          <div class="ev-top">
+            <div class="ev-tags"><span class="ev-tag ev-tag--sight">Departure</span></div>
+            <span class="ev-time">Afternoon</span>
+          </div>
+          <h3 class="ev-title">Uber to Palma Airport — Situ + Koza</h3>
+          <p class="ev-detail">Approximately 30-minute drive. Leave 2.5 hours before the flight. Split the Uber two ways.</p>
+          <div class="ev-footer">
+            <span class="ev-cost">€12 <span class="ev-cost-label">per person</span></span>
+            <span class="ev-note">Split 2 · ~€24 total</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="spend-wrap">
+        <div class="spend-hd">Monday Spend Summary</div>
+        <table class="spend-table" aria-label="Monday spend breakdown">
+          <tbody>
+            <tr class="spend-included">
+              <td>Hotel Breakfast</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Final beach drinks and snacks</td>
+              <td>€8</td>
+            </tr>
+            <tr>
+              <td>Final lunch</td>
+              <td>€15</td>
+            </tr>
+            <tr>
+              <td>Airport Uber (split 2)</td>
+              <td>€12</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>€10</td>
+            </tr>
+            <tr class="spend-total">
+              <td>Daily Total</td>
+              <td>~€45 pp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         FOOD GUIDE
+    ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="food-title">
+      <div class="sec-label">Eat Well</div>
+      <h2 class="sec-title" id="food-title">Food Guide</h2>
+
+      <div class="food-grid">
+
+        <div class="food-card">
+          <div class="food-name">Madame Cabra Pizzeria</div>
+          <div class="food-stars">4.9 stars</div>
+          <p class="food-desc">Best pizza in the area. Quality ingredients, proper portions. Book ahead — fills up fast every night.</p>
+          <div class="food-price">€22 – 28 pp</div>
+          <span class="food-badge">Palma Nova</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">L.A. American Diner</div>
+          <div class="food-stars">4.7 stars</div>
+          <p class="food-desc">Proper burgers and loaded plates. Filling and very good value. Right for last-day lunch or post-beach fuel.</p>
+          <div class="food-price">€20 – 28 pp</div>
+          <span class="food-badge">Magaluf</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">Food Junction</div>
+          <div class="food-stars">5.0 stars</div>
+          <p class="food-desc">The best value spot on the strip. 5 stars across the board. Saturday lunch here is non-negotiable.</p>
+          <div class="food-price">€8 – 12 pp</div>
+          <span class="food-badge">Magaluf Strip</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">Beach Chiringuito</div>
+          <div class="food-stars">Beachfront</div>
+          <p class="food-desc">Casual beachfront snacks and fresh plates. Perfect post-swim. Cold drinks, sea views, no fuss.</p>
+          <div class="food-price">€10 – 15 pp</div>
+          <span class="food-badge">Palma Nova Beach</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">Mercadona</div>
+          <div class="food-stars">Supermarket</div>
+          <p class="food-desc">Stock up here before the beach and before pre-drinks every single day. Water, beer, snacks. Fraction of bar prices.</p>
+          <div class="food-price">€10 – 15 load-up</div>
+          <span class="food-badge food-badge--tip">Essential Stop</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">Old Town Tapas — Palma</div>
+          <div class="food-stars">Multiple spots</div>
+          <p class="food-desc">If you go into Palma city, eat tapas near the Cathedral in the Old Town. Proper local food at reasonable prices.</p>
+          <div class="food-price">€12 – 18 pp</div>
+          <span class="food-badge">Palma Old Town</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">Oceans Restaurant</div>
+          <div class="food-stars">Beach Club</div>
+          <p class="food-desc">Restaurant at Oceans Beach Club. Good if you want to eat and go straight into Sunday night — combine dinner and entry.</p>
+          <div class="food-price">€25 – 35 pp</div>
+          <span class="food-badge">Sunday Night</span>
+        </div>
+
+        <div class="food-card">
+          <div class="food-name">UM Beach House Portals</div>
+          <div class="food-stars">Premium</div>
+          <p class="food-desc">Upscale beach club restaurant at Portals Nous. Worth it for the final group dinner if you want the real send-off experience. Book it Saturday.</p>
+          <div class="food-price">€40 – 60 pp</div>
+          <span class="food-badge food-badge--splurge">Splurge</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BUDGET SECTION
+    ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="budget-title">
+      <div class="sec-label">Know Your Numbers</div>
+      <h2 class="sec-title" id="budget-title">Budget Breakdown</h2>
+
+      <div class="budget-grid">
+        <div class="budget-card">
+          <div class="budget-lbl">3 Nights Out</div>
+          <div class="budget-amt">€230</div>
+          <p class="budget-sub">Entry, drinks and Ubers to clubs across all 3 nights</p>
+        </div>
+        <div class="budget-card">
+          <div class="budget-lbl">Lunches</div>
+          <div class="budget-amt">€35</div>
+          <p class="budget-sub">3 lunches across the trip — breakfasts and dinners are included</p>
+        </div>
+        <div class="budget-card">
+          <div class="budget-lbl">Daytime Activities</div>
+          <div class="budget-amt">€90</div>
+          <p class="budget-sub">Watersports, sightseeing, beach supplies, Mercadona runs</p>
+        </div>
+        <div class="budget-card">
+          <div class="budget-lbl">All Ubers</div>
+          <div class="budget-amt">€55</div>
+          <p class="budget-sub">Airport runs, club transfers, city trips</p>
+        </div>
+        <div class="budget-card">
+          <div class="budget-lbl">Misc</div>
+          <div class="budget-amt">€30</div>
+          <p class="budget-sub">Water, sun cream, tips, unexpected extras</p>
+        </div>
+      </div>
+
+      <div class="budget-total-row">
+        <div>
+          <div class="budget-total-lbl">Estimated Total Per Person</div>
+          <div class="budget-total-amt">~€440</div>
+        </div>
+        <p class="budget-caveat">Spending money on top of flights and hotel, which are pre-booked. Daily budget is €200. These 4 days total approximately €440 of actual spend.</p>
+      </div>
+
+      <div class="budget-incl-note">
+        Hotel breakfast and dinner are included at Globales Panama every day. Only lunches need to come from the daily spending money.
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         DOS AND DON'TS
+    ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="dd-title">
+      <div class="sec-label">Rules of the Road</div>
+      <h2 class="sec-title" id="dd-title">Dos and Don'ts</h2>
+
+      <div class="dd-grid">
+
+        <div class="dd-col dd-col--dos">
+          <h3 class="dd-col-title">Do</h3>
+          <ul class="dd-list" role="list">
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Stick to the €200/day budget. Track it on your phone as you spend — it adds up faster than expected at the bar.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Buy beer and water from Mercadona before the beach and before pre-drinks every night. Fraction of bar prices.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Split all Ubers four ways every time. Never book solo. This alone saves €15–20 per day across the trip.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Pre-book activities. Jet ski, UM Beach House, any restaurant you actually care about. Sunday dinner especially — book it Saturday afternoon.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>DM Times Square Music Club and Pure Night Club on Instagram before flying. Confirm the afrobeats nights are running on your dates.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>MC and TT: pre-book the airport Uber on Sunday before going out. Screenshot the confirmation. Do not leave it to the club at 2am.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Wear SPF 50 from day one. A burn on Friday means suffering for the remaining three days straight.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Drink a litre of water before sleeping each night. You need to be functional for four days back to back.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dd-col dd-col--dont">
+          <h3 class="dd-col-title">Don't</h3>
+          <ul class="dd-list" role="list">
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Take deals from street touts on Punta Ballena. They target tourists. Walk straight past without making eye contact.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Take valuables to clubs. Leave watches, good chains, and extra cash in the hotel safe before going out each night.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Use non-metered taxis. Uber only — always see the price before getting in.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Go too hard at pre-drinks before Pure Night Club. It is a 6am finish. Pace from the hotel forward.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Walk back from Magaluf at night. Always take an Uber home. No exceptions, no matter how close it feels.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Skip hotel dinner before going out. It is free and included. Using it saves €25+ and lines the stomach for a big night.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Get into anything stupid with bars, promoters, or strangers on the strip. Nobody is in Mallorca to deal with drama.</span>
+            </li>
+            <li class="dd-item">
+              <span class="dd-dot" aria-hidden="true"></span>
+              <span>Leave Sunday dinner unbooked until Sunday morning. Half the decent restaurants fill up Saturday afternoon.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Murdaside Mallorca Memoirs &nbsp;·&nbsp; The Yos &nbsp;·&nbsp; 19–22 June 2026</p>
+    <p>Situ &nbsp;·&nbsp; Koza &nbsp;·&nbsp; MC &nbsp;·&nbsp; TT &nbsp;·&nbsp; Globales Panama &nbsp;·&nbsp; Palma Nova</p>
+  </footer>
+
+  <script>
+    // ─────────────────────────────────────────
+    // PHOTO INJECTION
+    // Call injectCrewPhoto("base64string...") to set both the hero background
+    // and the portrait photo widget simultaneously.
+    // The base64 string can include or omit the data: prefix.
+    // ─────────────────────────────────────────
+    function injectCrewPhoto(base64) {
+      const dataUrl = base64.startsWith('data:')
+        ? base64
+        : 'data:image/jpeg;base64,' + base64;
+      const heroBg  = document.getElementById('heroBg');
+      const crewImg = document.getElementById('crewImg');
+      if (heroBg)  heroBg.style.backgroundImage = 'url(' + dataUrl + ')';
+      if (crewImg) crewImg.src = dataUrl;
+    }
+
+    // ─────────────────────────────────────────
+    // TAB SWITCHING
+    // ─────────────────────────────────────────
+    const tabs   = document.querySelectorAll('.day-tab');
+    const panels = document.querySelectorAll('.day-panel');
+
+    function switchDay(day) {
+      tabs.forEach(t => {
+        const active = t.dataset.day === day;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(p => {
+        p.classList.toggle('active', p.id === 'panel-' + day);
+      });
+      // Trigger scroll animations for newly visible cards
+      observeAll();
+      // Scroll to tab bar
+      document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => switchDay(tab.dataset.day));
+      tab.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          switchDay(tab.dataset.day);
+        }
+      });
+    });
+
+    // ─────────────────────────────────────────
+    // SCROLL ANIMATIONS
+    // ─────────────────────────────────────────
+    function observeAll() {
+      const targets = document.querySelectorAll(
+        '.event-card:not(.visible), .food-card:not(.visible), .budget-card:not(.visible), .dd-item:not(.visible)'
+      );
+
+      if (!targets.length) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 42);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+      targets.forEach(el => io.observe(el));
+    }
+
+    observeAll();
+
+    // ─────────────────────────────────────────
+    // HERO PARALLAX
+    // ─────────────────────────────────────────
+    const heroBgEl = document.getElementById('heroBg');
+
+    function onScroll() {
+      if (!heroBgEl) return;
+      const sy = window.scrollY;
+      if (sy < window.innerHeight * 1.4) {
+        heroBgEl.style.transform = 'scale(1.06) translateY(' + (sy * 0.22) + 'px)';
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ─────────────────────────────────────────
+    // REDUCED MOTION — reveal all immediately
+    // ─────────────────────────────────────────
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.event-card, .food-card, .budget-card, .dd-item')
+        .forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
